@@ -10,21 +10,34 @@
 
     </script>
   </head>
+
+
+
   <body>
     <div ng-app="main" ng-controller="formCtrl" class="container">
-      <form class="well input-form" action="index.html" method="post">
-        <div class="form-group">
-           <label for="exampleInputEmail1">Email address</label>
-           <input type="email" ng-model="data.email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-         </div>
-         <div class="form-group">
-           <label for="exampleInputPassword1">Password</label>
-           <input type="password" ng-model="data.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-         </div>
-      </form>
-      <p>
-        {{data}}
-      </p>
+      <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <form class="well input-form" name="inputform">
+            <div class="form-group has-feedback" ng-class="{'has-success': inputform.email.$dirty && inputform.email.$valid, 'has-error': inputform.email.$dirty && inputform.email.$invalid}">
+              <label class="control-label" for="exampleInputEmail1">Email address</label>
+              <input type="email" name="email" ng-model="data.email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': inputform.email.$dirty && inputform.email.$valid, 'glyphicon-remove': inputform.email.$dirty && inputform.email.$invalid}" aria-hidden="true"></span>
+            </div>
+            <div class="form-group has-feedback" ng-class="{'has-success': inputform.password.$dirty && inputform.password.$valid, 'has-error': inputform.password.$dirty && inputform.password.$invalid}">
+              <label class="control-label" for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" ng-model="data.password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+              <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': inputform.password.$dirty && inputform.password.$valid, 'glyphicon-remove': inputform.password.$dirty && inputform.password.$invalid}" aria-hidden="true"></span>
+            </div>
+          </form>
+          <p>
+            {{data}}
+          </p>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
     </div>
   </body>
 </html>
