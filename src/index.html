@@ -4,22 +4,21 @@
     <meta charset="utf-8">
     <title>angular/bootstrap</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-mocks.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="script.js">
-
     </script>
   </head>
-
-
-
   <body>
-    <div ng-app="main" ng-controller="formCtrl" class="container">
+    <div ng-app="demoApp" ng-controller="MainCtrl" class="container">
       <div class="row">
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
           <form class="well input-form" name="inputform" ng-submit="submit()">
+            <div class="alert alert-success" ng-show="postResult == 1"><b>Success!</b> You are logged in.</div>
+            <div class="alert alert-danger" ng-show="postResult == 2"><b>Error!</b> Email and Password are incorrect.</div>
             <div class="form-group has-feedback" ng-class="{'has-success': inputform.email.$dirty && inputform.email.$valid, 'has-error': inputform.email.$dirty && inputform.email.$invalid}">
               <label class="control-label" for="exampleInputEmail1">Email address</label>
               <input type="email" name="email" ng-model="data.email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
@@ -30,7 +29,8 @@
               <input type="password" name="password" ng-model="data.password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
               <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': inputform.password.$dirty && inputform.password.$valid, 'glyphicon-remove': inputform.password.$dirty && inputform.password.$invalid}" aria-hidden="true"></span>
             </div>
-            <button class="btn btn-primary" type="submit" ng-disabled="inputform.$invalid || inputform.$pristine">Test Button</button>
+            <button class="btn btn-primary" type="submit" ng-disabled="loading || inputform.$invalid || inputform.$pristine">Test Button</button>
+            <p ng-show="loading"><span class="glyphicon glyphicon-refresh" ></span> Processing ...</p>
           </form>
           <p>
             {{data}}
